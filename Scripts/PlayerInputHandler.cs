@@ -52,6 +52,7 @@ public class PlayerInputHandler : MonoBehaviour
             movement += new Vector3(1,0,0);
         }
         playerSpaceShip.Move(movement);
+        //playerSpaceShip.MoveToward(Camera.main.ScreenToWorldPoint(Input.mousePosition));
     }
 
     public SpaceShip GetPlayerShip() {

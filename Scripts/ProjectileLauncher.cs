@@ -22,6 +22,7 @@ public class ProjectileLauncher : MonoBehaviour
     [SerializeField] int maxAmmo = 10;
     [SerializeField] int currentAmmo = 10;
     [SerializeField] float maxReloadTime = 10;
+    [SerializeField] float cooldownTime = .25f;
     float currentReloadTime = 0;
 
     
@@ -29,6 +30,7 @@ public class ProjectileLauncher : MonoBehaviour
         currentAmmo = maxAmmo;
     }
 
+    bool coolingDown = false;
     //Launch a projectile forward
     public float Launch() { //returns a recoil amount
         if(currentAmmo < 1) {
@@ -37,6 +39,12 @@ public class ProjectileLauncher : MonoBehaviour
         if(currentReloadTime > 0) {
             return 0;
         }
+
+        if(coolingDown) {
+            return 0;
+        }
+        Cooldown();
+
         currentAmmo -= 1;
         GameObject newProjectile = Instantiate(projectilePrefab, spawnTransform.position, Quaternion.identity);
         newProjectile.GetComponent<Rigidbody2D>().velocity = transform.up * projectileSpeed;
@@ -45,6 +53,15 @@ public class ProjectileLauncher : MonoBehaviour
         //audioSource.PlayOneShot(audioClip);
         Destroy(newProjectile, 2);
         return GetRecoilAmount();
+    }
+
+    void Cooldown() {
+        coolingDown = true;
+        StartCoroutine(CoolingDownRoutine());
+        IEnumerator CoolingDownRoutine() {
+            yield return new WaitForSeconds(cooldownTime);
+            coolingDown = false;
+        }
     }
 
 
