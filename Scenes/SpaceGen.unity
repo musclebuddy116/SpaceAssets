@@ -10585,7 +10585,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7904546903979743475, guid: 2484061ab0206c147a7b0c7d72a48427, type: 3}
       insertIndex: -1
       addedObject: {fileID: 312496074}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8941093045949887475, guid: 2484061ab0206c147a7b0c7d72a48427, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1896297613}
   m_SourcePrefab: {fileID: 100100000, guid: 2484061ab0206c147a7b0c7d72a48427, type: 3}
 --- !u!1 &770659657
 GameObject:
@@ -10969,7 +10972,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3566716843417016540, guid: 2484061ab0206c147a7b0c7d72a48427, type: 3}
   m_PrefabInstance: {fileID: 636619534}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1896297609}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 04064cf27e4ee9445b50339cca0f928e, type: 3}
@@ -11717,6 +11720,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 932a36ebfe110c74c9a094627e92691e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1896297609 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8941093045949887475, guid: 2484061ab0206c147a7b0c7d72a48427, type: 3}
+  m_PrefabInstance: {fileID: 636619534}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1896297613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1896297609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14887a9e3b34a6c4498c7705ad0d7314, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 100
 --- !u!1 &2015565258
 GameObject:
   m_ObjectHideFlags: 0
@@ -11768,8 +11790,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02086aa06ca364e40b19a65249f784c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cargoText: {fileID: 0}
-  playerInputHandler: {fileID: 0}
+  cargoText: {fileID: 620385136}
+  playerInputHandler: {fileID: 1050678211}
 --- !u!114 &2015565261
 MonoBehaviour:
   m_ObjectHideFlags: 0
