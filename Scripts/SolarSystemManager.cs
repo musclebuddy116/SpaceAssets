@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -19,8 +18,17 @@ public class SolarSystemManager : MonoBehaviour
     [SerializeField] ScreenFader hyperJumpScreenFader;
     bool colonizedEntireSystem = false;
 
+    [Header("Asteroids")]
+    [SerializeField] List<Asteroid> asteroids;
+
+    [Header("Ships")]
+    [SerializeField] List<SpaceShip> spaceShips;
+
     void Awake()
     {
+        planets= new List<Planet>();
+        asteroids = new List<Asteroid>();
+        spaceShips = new List<SpaceShip>();
         if(singleton == null) {
             singleton = this;
         } else {
@@ -31,6 +39,24 @@ public class SolarSystemManager : MonoBehaviour
 
     public void RegisterPlanet(Planet p) {
         planets.Add(p);
+    }
+
+    public void RegisterAsteroid(Asteroid a){
+        asteroids.Add(a);
+    }
+    public void RegisterSpaceShip(SpaceShip s) {
+        spaceShips.Add(s);
+    }
+    public void RemoveAsteroid(Asteroid a){
+        asteroids.Remove(a);
+    }
+
+    public List<Asteroid> GetAsteroids(){
+        return asteroids;
+    }
+
+    public List<SpaceShip> GetSpaceShips() {
+        return spaceShips;
     }
 
     public void ReportPlanetColonization() {

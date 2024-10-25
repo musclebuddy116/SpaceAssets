@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerInputHandler : MonoBehaviour
 {
+    delegate bool AITick();
     [SerializeField] SpaceShip playerSpaceShip;
 
     // Start is called before the first frame update
@@ -21,7 +22,7 @@ public class PlayerInputHandler : MonoBehaviour
             SceneManager.LoadScene("MainMenu");
             return;
         }
-        if(Input.GetKeyDown(KeyCode.Space)) {
+        if(Input.GetKey(KeyCode.Space)) {
             playerSpaceShip.LaunchWithShip();
         }
 
@@ -31,6 +32,9 @@ public class PlayerInputHandler : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.J)) {
             SolarSystemManager.singleton.JumpAwayFromSystem();
+        }
+        if(Input.GetKeyDown(KeyCode.M)){
+            playerSpaceShip.DeployMiner();
         }
 
         playerSpaceShip.AimShip(Camera.main.ScreenToWorldPoint(Input.mousePosition));

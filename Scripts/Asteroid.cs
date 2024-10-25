@@ -20,9 +20,10 @@ public class Asteroid : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Resize();
-        RandomizeColor();
-        RandomizeVelocity();
+        //Resize();
+        //RandomizeVelocity();
+        //RandomizeColor();
+        SolarSystemManager.singleton.RegisterAsteroid(this);
     }
 
     void FixedUpdate() {
@@ -48,7 +49,6 @@ public class Asteroid : MonoBehaviour
     }
 
     public void RandomizeColor() {
-        //float brightness = ;
         float minColorVal = .25f;
         float maxColorVal = .5f;
         spriteRenderer.color = new Color(Random.Range(minColorVal, maxColorVal), Random.Range(minColorVal,maxColorVal), Random.Range(minColorVal, maxColorVal));
@@ -68,11 +68,16 @@ public class Asteroid : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D other) {
-        if(other.CompareTag("Projectile")) {
-            Destroy(other.gameObject);
-            BreakApart();
-        } else if(other.CompareTag("Ship")) {
-            other.GetComponent<SpaceShip>().Damage();
-        }
+        // if(other.CompareTag("Projectile")) {
+        //     Destroy(other.gameObject);
+        //     BreakApart();
+        // } else if(other.CompareTag("Ship")) {
+        //     other.GetComponent<SpaceShip>().Damage();
+        // }
+    }
+
+    void OnDestroy()
+    {
+        SolarSystemManager.singleton.RemoveAsteroid(this);
     }
 }

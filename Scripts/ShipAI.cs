@@ -31,7 +31,32 @@ public class ShipAI : MonoBehaviour
     }
 
     bool CanSeeTarget() {
+        if(targetShip == null) {
+            return false;
+        }
+
         return Vector3.Distance(myShip.transform.position, targetShip.transform.position) < sightDistance;
+    }
+
+    void FindTarget() {
+        List<SpaceShip> potentialTargets = SolarSystemManager.singleton.GetSpaceShips();
+        foreach(SpaceShip s in potentialTargets) {
+            if(s.GetTeam() == myShip.GetTeam()) {
+                continue;
+            }
+
+            if(s.isDead()) {
+                continue;
+            }
+
+            if(targetShip = null) {
+                targetShip = s;
+            }
+
+            if(Vector3.Distance(targetShip.transform.position, myShip.transform.position) > Vector3.Distance(s.transform.position, myShip.transform.position)) {
+                targetShip = s;
+            }
+        }
     }
 
     void IdleState() {
@@ -45,7 +70,12 @@ public class ShipAI : MonoBehaviour
     }
 
     void AttackState() {
-        myShip.MoveToward(targetShip.transform.position);
+        if(Vector3.Distance(transform.position, targetShip.transform.position) > 3) {
+            myShip.MoveToward(targetShip.transform.position);
+        } else {
+            myShip.Stop();
+        }
+
         myShip.AimShip(targetShip.transform);
         if(stateTime == 0) {
             currentStateString = "AttackState";
@@ -95,6 +125,7 @@ public class ShipAI : MonoBehaviour
         //move towards it
         //once we reach it, choose a new Random Position
         if(stateTime == 0) {
+            targetShip = null;
             currentStateString = "PatrolState";
             patrolPivot = myShip.transform.position;
             patrolPos = myShip.transform.position + new Vector3(Random.Range(-sightDistance,sightDistance), Random.Range(-sightDistance,sightDistance));
@@ -102,6 +133,7 @@ public class ShipAI : MonoBehaviour
 
         myShip.MoveToward(patrolPos);
         myShip.AimShip(patrolPos);
+        FindTarget();
 
         if(CanSeeTarget()) {
             ChangeState(AttackState);

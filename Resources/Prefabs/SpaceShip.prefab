@@ -47,7 +47,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e929a20a94ad7e94c9c30859f82bc174, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileSpeed: 10
   projectilePrefab: {fileID: 2056495664400887202, guid: d3935759557ffd74a80c2c8546a2cd36, type: 3}
   spawnTransform: {fileID: 8114736058579617155}
   audioSource: {fileID: 4332027147598487000}
@@ -55,6 +54,14 @@ MonoBehaviour:
   maxAmmo: 10
   currentAmmo: 10
   maxReloadTime: 1
+  cooldownTime: 0.25
+  projectileSpeed: 10
+  recoil: 2
+  projectileSize: 1
+  accuracy: 1
+  projectileCount: 1
+  projectileDamage: 1
+  seed: 0
 --- !u!212 &5302611612268121064
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -334,10 +341,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04064cf27e4ee9445b50339cca0f928e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 50
+  team: 0
+  speed: 10
   speedLimit: 2000
   rotationSpeed: 10
   projectileLauncher: {fileID: 157389054190607642}
+  currentCargo: 100
+  maxCargo: 100
+  minerPrefab: {fileID: 8587559065313753563, guid: 387b5af9de7b9be42b379b3f2aef9388, type: 3}
 --- !u!58 &6159287616199904956
 CircleCollider2D:
   m_ObjectHideFlags: 0
